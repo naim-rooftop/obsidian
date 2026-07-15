@@ -188,11 +188,14 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "3298ec1ba0815fb7",
   "lastOpenFiles": [
+    "RooftopIQ Lunch Tracker Bot.md",
+    "RooftopIQ Lunch Tracker Bot.md.tmp.166436.2257591156f2",
     "RooftopIQ Lunch Tracker.md",
     "Welcome.md",
     "Untitled.md"
