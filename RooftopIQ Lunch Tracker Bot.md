@@ -8,6 +8,21 @@ Repo: `~/Downloads/bot`
 
 ---
 
+## Deployment gotchas (learned the hard way)
+
+Setting up the Apps Script Chat app — the traps that cost hours:
+
+1. **`chat.bot` scope breaks authorization.** Do NOT put `https://www.googleapis.com/auth/chat.bot` in `appsscript.json` `oauthScopes`. It's an app-only scope, not user-grantable → `Error 400: invalid_scope` on the consent screen → script never authorizes → **empty Executions → bot "not responding"**. Removed it. Kept: `chat.messages`, `spreadsheets`, `script.scriptapp`, `script.external_request`.
+2. **Use the HEAD deployment ID, not an "Add-on" deployment.** Chat API → Configuration → Connection settings → **Apps Script project** → paste the **Head deployment ID** from **Deploy → Test deployments** (no "Install" button — just copy the ID shown). Deploying as type "Add-on" = a Workspace Add-on (wrong product) → Chat can't invoke it.
+3. **Empty Executions = Chat never reached the code.** Diagnostic ladder: code files present? → GCP project linked (Project Settings) matches the Chat API's project? → deployment IDs match? → **script authorized at least once** (run any function)? → manifest has no bad scope?
+4. **Service accounts / Cloud Run / ADC advice does NOT apply.** That's for an HTTP-endpoint bot on Cloud Run/Functions/GCE. This bot is Apps Script — no `gcloud`, no service account, no key file.
+5. **Visibility changes lag up to 24h.** Chat API → Configuration → Visibility → "specific people and groups" + list emails (`naim@rooftop.my`, `deon@rooftop.my`). "Everyone in domain" needs a Marketplace publish — skip. App status must be **LIVE**. After changes, the bot can take minutes–hours to appear in Chat app search; fully reload Chat.
+6. **Manifest timezone** was `Asia/Singapore` in the editor; repo/CONFIG use `Asia/Kuala_Lumpur` (same UTC+8, cosmetic).
+
+**Status:** scope fixed, consent granted, App status LIVE, visibility set → waiting on Chat search propagation to re-add the bot.
+
+---
+
 ## What it does
 
 - HR sets a 5-dish weekly menu (Mon–Fri, one dish/day, no choice between dishes).
