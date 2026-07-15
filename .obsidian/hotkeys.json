@@ -1,0 +1,11 @@
+{
+  "app:open-another-vault": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "O"
+    }
+  ]
+}
