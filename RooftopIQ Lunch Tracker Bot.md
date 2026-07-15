@@ -23,6 +23,37 @@ Repo: `~/Downloads/bot`
 
 ---
 
+## Traditional flow (pre-bot)
+
+The manual process the bot replaces:
+
+1. **GoClean → HR** — GoClean sends the week's menu to Rooftop HR via **WhatsApp**.
+2. **HR → staff** — HR forwards the menu to **Rooftop** and **Dyna** staff as a **Google Form** link.
+3. **Vote** — staff of both companies vote per day (want / don't want the meal).
+4. **Collect** — HR reads the form feedback.
+5. **Decide** — per day: **< 7 votes → cancel that day**; **≥ 7 → order**.
+6. **HR → GoClean** — HR writes down / WhatsApps GoClean which days each company will order.
+
+> Two companies vote **separately** — Rooftop and Dyna each have their own per-day count and their own 7-threshold; HR reports to GoClean per company.
+
+## Traditional → bot mapping + gaps
+
+| Traditional step | Bot equivalent | Status |
+|---|---|---|
+| GoClean → HR WhatsApp menu | HR types `/add-menu` | ✅ manual entry, same |
+| Google Form link to staff | Picker card DM'd to staff (`/pick`, broadcast) | ✅ replaces form |
+| Staff vote | Yes/Skip per day → Orders tab | ✅ |
+| HR counts votes | `/summary` per-day counts | ✅ |
+| < 7 cancel / ≥ 7 order | `/summary` flags days `< 7` as ⚠️ "To cancel with GoClean" (`cards.gs:812` `c < minOrders`) | ✅ rule matches |
+| HR tells GoClean per company | — | ❌ manual; no GoClean handoff output |
+| **Two companies (Rooftop + Dyna), separate counts** | — | ❌ **not modeled** — Roles is one flat pool, no company column, `/summary` = one combined count |
+
+**Top gap:** bot mixes Rooftop + Dyna into one pool. Real flow needs **per-company** counts + per-company thresholds. Deferred (document-only round). Next build candidates:
+1. Add company column to Roles → per-company `/summary` counts + thresholds.
+2. GoClean handoff output (copyable per-company "order these days / cancel these days" text).
+
+---
+
 ## Commands
 
 | cmd | who | does |
