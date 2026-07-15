@@ -1,4 +1,6 @@
-# RooftopIQ Lunch Tracker Bot
+# Hestia — RooftopIQ Lunch Tracker Bot
+
+> **Codename: Hestia** 🔥 — Greek goddess of the hearth + communal meals. Internal codename only; staff see "Lunch Bot" in Chat.
 
 Google Chat bot for weekly team lunch ordering. **Google Apps Script (V8) + Google Sheets**. No external server, no build step.
 
