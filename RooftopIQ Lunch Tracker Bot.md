@@ -25,16 +25,37 @@ Repo: `~/Downloads/bot`
 
 ## Traditional flow (pre-bot)
 
-The manual process the bot replaces:
+The manual process the bot replaces. **4 actors: GoClean, HR, Dyna, Rooftop.**
 
-1. **GoClean → HR** — GoClean sends the week's menu to Rooftop HR via **WhatsApp**.
-2. **HR → staff** — HR forwards the menu to **Rooftop** and **Dyna** staff as a **Google Form** link.
-3. **Vote** — staff of both companies vote per day (want / don't want the meal).
-4. **Collect** — HR reads the form feedback.
-5. **Decide** — per day: **< 7 votes → cancel that day**; **≥ 7 → order**.
-6. **HR → GoClean** — HR writes down / WhatsApps GoClean which days each company will order.
+1. **GoClean → HR** — sends the week's menu via **WhatsApp**.
+2. **HR** — *sort the menu* (clean up / organize dishes).
+3. **HR** — *add the menu to a Google Form*.
+4. **HR → Dyna** and **HR → Rooftop** — send the **Google Form link** to both companies.
+5. **Dyna staff vote** and **Rooftop staff vote** (per day, want / don't want).
+6. **Dyna → HR** and **Rooftop → HR** — form responses come back.
+7. **HR** — *sort the menu + draft WhatsApp message*. Per day: **< 7 votes → cancel that day**; **≥ 7 → order**.
+8. **HR → GoClean** — *send* the final WhatsApp (which days each company orders).
 
 > Two companies vote **separately** — Rooftop and Dyna each have their own per-day count and their own 7-threshold; HR reports to GoClean per company.
+
+```mermaid
+sequenceDiagram
+    participant G as GoClean
+    participant H as HR
+    participant D as Dyna
+    participant R as Rooftop
+    G->>H: send menu via WhatsApp
+    Note over H: sort the menu
+    Note over H: add the menu to Google Form
+    H->>D: send the Google Form link
+    H->>R: send the Google Form link
+    Note over D: staff vote
+    Note over R: staff vote
+    D->>H: response
+    R->>H: response
+    Note over H: sort the menu +<br/>draft WhatsApp message<br/>(<7 cancel, >=7 order)
+    H->>G: send
+```
 
 ## Traditional → bot mapping + gaps
 
