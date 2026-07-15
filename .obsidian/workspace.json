@@ -23,12 +23,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "RooftopIQ Lunch Tracker.md",
+                "file": "RooftopIQ Lunch Tracker Bot.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "RooftopIQ Lunch Tracker"
+              "title": "RooftopIQ Lunch Tracker Bot"
             }
           }
         ],
@@ -194,9 +194,9 @@
   },
   "active": "3298ec1ba0815fb7",
   "lastOpenFiles": [
+    "RooftopIQ Lunch Tracker.md",
     "RooftopIQ Lunch Tracker Bot.md",
     "RooftopIQ Lunch Tracker Bot.md.tmp.166436.2257591156f2",
-    "RooftopIQ Lunch Tracker.md",
     "Welcome.md",
     "Untitled.md"
   ]
